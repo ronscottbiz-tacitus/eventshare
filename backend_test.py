@@ -129,14 +129,14 @@ class EventShareAPITester:
                 "picture": "https://via.placeholder.com/150",
                 "auth_provider": "google",
                 "role": "host",
-                "created_at": datetime.now(datetime.timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat()
             }
             
             session_data = {
                 "user_id": host_user_id,
                 "session_token": session_token,
                 "expires_at": expires_at.isoformat(),
-                "created_at": datetime.now(datetime.timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat()
             }
             
             # Insert into database
