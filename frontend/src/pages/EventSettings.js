@@ -185,7 +185,7 @@ const EventSettings = () => {
                         <DialogTitle>Event QR Code</DialogTitle>
                       </DialogHeader>
                       <div className="flex justify-center py-6">
-                        <QRCodeReact value={joinUrl} size={300} />
+                        <QRCodeCanvas value={joinUrl} size={300} />
                       </div>
                       <p className="text-center text-sm text-gray-600">
                         Guests can scan this QR code to join the event
