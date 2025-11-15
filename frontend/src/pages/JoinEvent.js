@@ -34,9 +34,11 @@ const JoinEvent = () => {
       const response = await axios.post(`${API}/events/join`, {
         join_code: joinCode.toUpperCase(),
         user_name: userName,
+      }, {
+        withCredentials: true,
       });
 
-      localStorage.setItem('session_token', response.data.session_token);
+      await checkAuth();
       toast.success('Successfully joined event!');
       navigate(`/events/${response.data.event.id}/gallery`);
     } catch (error) {
