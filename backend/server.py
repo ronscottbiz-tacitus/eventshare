@@ -406,7 +406,7 @@ async def delete_event(event_id: str, current_user: User = Depends(get_current_u
 
 # Event join endpoints
 @api_router.post("/events/join")
-async def join_event(join_request: EventJoinRequest):
+async def join_event(join_request: EventJoinRequest, response: Response):
     event = await db.events.find_one({"join_code": join_request.join_code}, {"_id": 0})
     if not event:
         raise HTTPException(status_code=404, detail="Event not found")
