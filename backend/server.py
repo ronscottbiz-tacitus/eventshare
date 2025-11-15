@@ -461,6 +461,16 @@ async def join_event(join_request: EventJoinRequest, response: Response):
         "created_at": user_data["created_at"]
     }
     
+    response.set_cookie(
+        key="session_token",
+        value=session_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        max_age=7 * 24 * 60 * 60,
+        path="/"
+    )
+    
     return {
         "success": True,
         "session_token": session_token,
