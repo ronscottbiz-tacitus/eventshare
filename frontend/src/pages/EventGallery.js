@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import axios from 'axios';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
-import QRCodeReact from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
