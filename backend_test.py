@@ -120,7 +120,7 @@ class EventShareAPITester:
             # Create host user
             host_user_id = str(uuid.uuid4())
             session_token = str(uuid.uuid4())
-            expires_at = datetime.now() + timedelta(days=1)
+            expires_at = datetime.now(datetime.timezone.utc) + timedelta(days=1)
             
             user_data = {
                 "id": host_user_id,
