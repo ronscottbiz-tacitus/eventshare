@@ -109,35 +109,50 @@ class EventShareAPITester:
         """Create a mock host session by directly inserting into database"""
         self.log("Creating mock host session...")
         
-        # Create a mock host user for testing
-        test_user = {
-            "id": str(uuid.uuid4()),
-            "email": f"test.host.{datetime.now().strftime('%H%M%S')}@example.com",
-            "name": "Test Host",
-            "picture": "https://via.placeholder.com/150",
-            "auth_provider": "google",
-            "role": "host",
-            "created_at": datetime.now().isoformat()
-        }
+        # Create a host user directly in the database
+        import pymongo
         
-        session_token = f"test_session_{uuid.uuid4()}"
-        expires_at = datetime.now() + timedelta(days=1)
-        
-        # We'll use the guest session endpoint but modify the user role
-        success, response = self.run_test(
-            "Create Host Session (Mock)",
-            "POST", 
-            "auth/guest-session",
-            200,
-            data={"name": "Test Host"}
-        )
-        
-        if success:
-            self.session_token = response['session_token']
-            self.test_user_id = response['user']['id']
+        try:
+            # Connect to MongoDB directly
+            client = pymongo.MongoClient("mongodb://localhost:27017")
+            db = client.test_database
+            
+            # Create host user
+            host_user_id = str(uuid.uuid4())
+            session_token = str(uuid.uuid4())
+            expires_at = datetime.now() + timedelta(days=1)
+            
+            user_data = {
+                "id": host_user_id,
+                "email": f"test.host.{datetime.now().strftime('%H%M%S')}@example.com",
+                "name": "Test Host",
+                "picture": "https://via.placeholder.com/150",
+                "auth_provider": "google",
+                "role": "host",
+                "created_at": datetime.now().isoformat()
+            }
+            
+            session_data = {
+                "user_id": host_user_id,
+                "session_token": session_token,
+                "expires_at": expires_at.isoformat(),
+                "created_at": datetime.now().isoformat()
+            }
+            
+            # Insert into database
+            db.users.insert_one(user_data)
+            db.user_sessions.insert_one(session_data)
+            
+            self.session_token = session_token
+            self.test_user_id = host_user_id
             self.log(f"✅ Host session created: {self.session_token[:20]}...")
+            
+            client.close()
             return True
-        return False
+            
+        except Exception as e:
+            self.log(f"❌ Failed to create host session: {str(e)}")
+            return False
     
     def test_auth_endpoints(self):
         """Test authentication endpoints"""
