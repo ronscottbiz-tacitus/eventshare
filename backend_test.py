@@ -7,7 +7,7 @@ Tests all API endpoints for the event-based photo sharing app
 import requests
 import sys
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import uuid
 import os
 from pathlib import Path
