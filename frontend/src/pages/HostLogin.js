@@ -42,18 +42,29 @@ const HostLogin = () => {
     }
 
     try {
-      await axios.post(`${API}/auth/google-callback`, null, {
+      console.log('Processing session_id:', sessionId);
+      const response = await axios.post(`${API}/auth/google-callback`, null, {
         params: { session_id: sessionId },
         withCredentials: true,
       });
+      
+      console.log('Auth callback response:', response.data);
 
+      // Clean URL
       window.history.replaceState(null, '', '/host/login');
+      
+      // Wait a moment for cookie to be set
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Check auth status
       await checkAuth();
+      
       toast.success('Login successful!');
       navigate('/host/events');
     } catch (error) {
       console.error('Auth failed:', error);
-      toast.error('Authentication failed. Please try again.');
+      console.error('Error details:', error.response?.data);
+      toast.error(error.response?.data?.detail || 'Authentication failed. Please try again.');
       setProcessing(false);
     }
   };
