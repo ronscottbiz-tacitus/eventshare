@@ -112,7 +112,7 @@ const EventGallery = () => {
                     </DialogHeader>
                     <div className="space-y-6 py-4">
                       <div className="flex justify-center">
-                        <QRCodeReact value={joinUrl} size={256} />
+                        <QRCodeCanvas value={joinUrl} size={256} />
                       </div>
                       <div className="text-center space-y-2">
                         <p className="text-sm text-gray-600">Event Code</p>
