@@ -238,7 +238,18 @@ async def create_guest_session(data: GuestSessionCreate, response: Response):
         path="/"
     )
     
-    return {"success": True, "session_token": session_token, "user": user_data}
+    # Return clean user data without MongoDB _id field
+    clean_user_data = {
+        "id": user_data["id"],
+        "name": user_data["name"],
+        "email": user_data["email"],
+        "picture": user_data["picture"],
+        "auth_provider": user_data["auth_provider"],
+        "role": user_data["role"],
+        "created_at": user_data["created_at"]
+    }
+    
+    return {"success": True, "session_token": session_token, "user": clean_user_data}
 
 @api_router.get("/auth/me")
 async def get_me(current_user: User = Depends(get_current_user)):
