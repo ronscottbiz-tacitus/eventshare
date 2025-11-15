@@ -17,14 +17,17 @@ const HostLogin = () => {
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    if (user && user.role === 'host') {
-      navigate('/host/events');
-      return;
-    }
-
     const hash = location.hash;
+    
+    // Process session_id first before checking user
     if (hash && hash.includes('session_id=')) {
       processSessionId(hash);
+      return;
+    }
+    
+    // Only redirect if we have a user and no session_id to process
+    if (user && user.role === 'host') {
+      navigate('/host/events');
     }
   }, [user, location]);
 
