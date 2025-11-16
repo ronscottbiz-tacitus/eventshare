@@ -19,13 +19,11 @@ const HostLogin = () => {
   useEffect(() => {
     const hash = location.hash;
     
-    // Process session_id first before checking user
     if (hash && hash.includes('session_id=')) {
       processSessionId(hash);
       return;
     }
     
-    // Only redirect if we have a user and no session_id to process
     if (user && user.role === 'host') {
       navigate('/host/events');
     }
@@ -50,13 +48,10 @@ const HostLogin = () => {
       
       console.log('Auth callback response:', response.data);
 
-      // Clean URL
       window.history.replaceState(null, '', '/host/login');
       
-      // Wait a moment for cookie to be set
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // Check auth status
       await checkAuth();
       
       toast.success('Login successful!');
@@ -75,28 +70,28 @@ const HostLogin = () => {
 
   if (processing) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900">
         <div className="text-center space-y-4">
-          <Loader2 className="w-12 h-12 animate-spin text-emerald-600 mx-auto" />
-          <p className="text-lg text-gray-600">Completing authentication...</p>
+          <Loader2 className="w-12 h-12 animate-spin text-blue-400 mx-auto" />
+          <p className="text-lg text-gray-300">Completing authentication...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-10 space-y-8">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900">
+      <div className="max-w-md w-full bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-10 space-y-8">
         <div className="text-center space-y-4">
-          <div className="inline-block p-4 bg-emerald-100 rounded-2xl">
-            <Camera className="w-12 h-12 text-emerald-600" />
+          <div className="inline-block p-4 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl border border-blue-500/30">
+            <Camera className="w-12 h-12 text-blue-400" />
           </div>
           
-          <h2 className="text-3xl font-bold text-gray-800" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+          <h2 className="text-3xl font-bold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             Host Login
           </h2>
           
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Sign in with Google to create and manage your events
           </p>
         </div>
@@ -116,8 +111,8 @@ const HostLogin = () => {
           Continue with Google
         </Button>
 
-        <div className="border-t pt-6 mt-6">
-          <p className="text-center text-sm text-gray-600 mb-3">For testing purposes:</p>
+        <div className="border-t border-white/10 pt-6 mt-6">
+          <p className="text-center text-sm text-gray-400 mb-3">For testing purposes:</p>
           <Button
             data-testid="test-login-btn"
             onClick={async () => {
@@ -131,7 +126,7 @@ const HostLogin = () => {
               }
             }}
             variant="outline"
-            className="w-full"
+            className="w-full border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400"
           >
             Quick Test Login (Skip Google)
           </Button>
@@ -141,7 +136,7 @@ const HostLogin = () => {
           <button
             data-testid="back-to-welcome-btn"
             onClick={() => navigate('/')}
-            className="text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
+            className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
           >
             ← Back to Welcome
           </button>

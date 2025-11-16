@@ -49,7 +49,7 @@ const HostEvents = () => {
   if (loading || loadingEvents) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg text-gray-600">Loading...</p>
+        <p className="text-lg text-gray-300">Loading...</p>
       </div>
     );
   }
@@ -59,17 +59,17 @@ const HostEvents = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               My Events
             </h1>
-            <p className="text-gray-600">Welcome back, {user?.name}!</p>
+            <p className="text-gray-400">Welcome back, {user?.name}!</p>
           </div>
           
           <div className="flex gap-3">
             <Button
               data-testid="create-event-btn"
               onClick={() => navigate('/host/events/create')}
-              className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-full px-6 py-2.5 font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full px-6 py-2.5 font-semibold shadow-lg hover:shadow-blue-500/50 transition-all"
             >
               <Plus className="w-5 h-5 mr-2" />
               Create Event
@@ -78,7 +78,7 @@ const HostEvents = () => {
               data-testid="logout-btn"
               onClick={handleLogout}
               variant="outline"
-              className="rounded-full px-6 py-2.5"
+              className="rounded-full px-6 py-2.5 border-white/20 text-gray-300 hover:bg-white/10"
             >
               <LogOut className="w-4 h-4 mr-2" />
               Logout
@@ -87,13 +87,13 @@ const HostEvents = () => {
         </div>
 
         {events.length === 0 ? (
-          <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-16 text-center">
-            <Calendar className="w-20 h-20 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No events yet</h3>
-            <p className="text-gray-500 mb-6">Create your first event to start sharing memories</p>
+          <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-xl border border-white/10 p-16 text-center">
+            <Calendar className="w-20 h-20 text-gray-500 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-white mb-2">No events yet</h3>
+            <p className="text-gray-400 mb-6">Create your first event to start sharing memories</p>
             <Button
               onClick={() => navigate('/host/events/create')}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-8 py-3"
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3"
             >
               Create Your First Event
             </Button>
@@ -103,13 +103,13 @@ const HostEvents = () => {
             {events.map((event) => (
               <div
                 key={event.id}
-                className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                className="bg-white/5 backdrop-blur-xl rounded-2xl shadow-lg hover:shadow-xl border border-white/10 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
-                <div className="bg-gradient-to-br from-emerald-500 to-teal-500 p-6">
+                <div className="bg-gradient-to-br from-blue-600 to-cyan-600 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                     {event.title}
                   </h3>
-                  <div className="flex items-center text-emerald-50 text-sm">
+                  <div className="flex items-center text-blue-50 text-sm">
                     <Calendar className="w-4 h-4 mr-2" />
                     {format(new Date(event.start_time), 'PPP')}
                   </div>
@@ -117,22 +117,22 @@ const HostEvents = () => {
 
                 <div className="p-6 space-y-4">
                   {event.location && (
-                    <div className="flex items-center text-gray-600 text-sm">
+                    <div className="flex items-center text-gray-400 text-sm">
                       <MapPin className="w-4 h-4 mr-2" />
                       {event.location}
                     </div>
                   )}
 
-                  <div className="flex items-center text-gray-600 text-sm">
+                  <div className="flex items-center text-gray-400 text-sm">
                     <QrCode className="w-4 h-4 mr-2" />
-                    Join Code: <span className="font-mono font-bold ml-1">{event.join_code}</span>
+                    Join Code: <span className="font-mono font-bold ml-1 text-blue-400">{event.join_code}</span>
                   </div>
 
                   <div className="flex gap-2 pt-4">
                     <Button
                       data-testid={`view-gallery-${event.id}`}
                       onClick={() => navigate(`/events/${event.id}/gallery`)}
-                      className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
                     >
                       <Users className="w-4 h-4 mr-2" />
                       Gallery
@@ -141,7 +141,7 @@ const HostEvents = () => {
                       data-testid={`event-settings-${event.id}`}
                       onClick={() => navigate(`/events/${event.id}/settings`)}
                       variant="outline"
-                      className="rounded-lg"
+                      className="rounded-lg border-white/20 text-gray-300 hover:bg-white/10"
                     >
                       <Settings className="w-4 h-4" />
                     </Button>
