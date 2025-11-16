@@ -70,25 +70,25 @@ const Welcome = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mt-16">
-            <div className="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
-              <div className="w-14 h-14 bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Camera className="w-7 h-7 text-emerald-400" />
+            <div className="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-blue-500/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Camera className="w-7 h-7 text-blue-400" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">Create Events</h3>
               <p className="text-gray-400">Generate instant QR codes and invite guests to share memories</p>
             </div>
 
-            <div className="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-teal-500/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
-              <div className="w-14 h-14 bg-gradient-to-br from-teal-500/20 to-teal-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Users className="w-7 h-7 text-teal-400" />
+            <div className="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Users className="w-7 h-7 text-cyan-400" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">Join Together</h3>
               <p className="text-gray-400">Scan QR codes or enter event codes to join in seconds</p>
             </div>
 
-            <div className="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
-              <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Share2 className="w-7 h-7 text-cyan-400" />
+            <div className="group bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-sky-500/50 hover:bg-white/10 transition-all duration-300 hover:-translate-y-2">
+              <div className="w-14 h-14 bg-gradient-to-br from-sky-500/20 to-sky-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Share2 className="w-7 h-7 text-sky-400" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">Share Photos</h3>
               <p className="text-gray-400">Everyone uploads to one shared gallery in real-time</p>
@@ -100,17 +100,17 @@ const Welcome = () => {
               data-testid="host-login-btn"
               onClick={() => navigate('/host/login')}
               size="lg"
-              className="group relative bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-12 py-7 rounded-full text-lg font-semibold shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300 overflow-hidden"
+              className="group relative bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-12 py-7 rounded-full text-lg font-semibold shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 overflow-hidden"
             >
               <span className="relative z-10">Host an Event</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
             
             <Button
               data-testid="join-event-btn"
               onClick={() => navigate('/join')}
               size="lg"
-              className="bg-white/10 backdrop-blur-sm border-2 border-emerald-400/50 text-white hover:bg-white/20 hover:border-emerald-400 px-12 py-7 rounded-full text-lg font-semibold shadow-2xl transition-all duration-300"
+              className="bg-white/10 backdrop-blur-sm border-2 border-blue-400/50 text-white hover:bg-white/20 hover:border-blue-400 px-12 py-7 rounded-full text-lg font-semibold shadow-2xl transition-all duration-300"
             >
               Join an Event
             </Button>
