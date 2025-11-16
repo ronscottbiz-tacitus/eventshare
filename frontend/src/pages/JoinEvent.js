@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Users, Calendar } from 'lucide-react';
+import { ArrowLeft, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
 import axios from 'axios';
 import { toast } from 'sonner';
-import { format } from 'date-fns';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -60,26 +59,26 @@ const JoinEvent = () => {
           data-testid="back-to-welcome-btn"
           onClick={() => navigate('/')}
           variant="ghost"
-          className="mb-6 rounded-full"
+          className="mb-6 rounded-full text-gray-300 hover:text-white hover:bg-white/10"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Welcome
         </Button>
 
-        <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-10">
+        <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-10">
           <div className="text-center mb-8">
-            <div className="inline-block p-4 bg-teal-100 rounded-2xl mb-4">
-              <Users className="w-12 h-12 text-teal-600" />
+            <div className="inline-block p-4 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl mb-4 border border-cyan-500/30">
+              <Users className="w-12 h-12 text-cyan-400" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
               Join Event
             </h1>
-            <p className="text-gray-600">Enter the event code to join and start sharing photos</p>
+            <p className="text-gray-400">Enter the event code to join and start sharing photos</p>
           </div>
 
           <form onSubmit={handleJoin} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="userName" className="text-gray-700 font-semibold">
+              <Label htmlFor="userName" className="text-gray-300 font-semibold">
                 Your Name *
               </Label>
               <Input
@@ -89,12 +88,12 @@ const JoinEvent = () => {
                 onChange={(e) => setUserName(e.target.value)}
                 placeholder="Enter your name"
                 required
-                className="h-12 rounded-xl border-2 focus:border-teal-500"
+                className="h-12 rounded-xl border-2 border-white/10 bg-white/5 text-white placeholder:text-gray-500 focus:border-cyan-500 focus:bg-white/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="joinCode" className="text-gray-700 font-semibold">
+              <Label htmlFor="joinCode" className="text-gray-300 font-semibold">
                 Event Code *
               </Label>
               <Input
@@ -105,7 +104,7 @@ const JoinEvent = () => {
                 placeholder="Enter 6-digit code"
                 maxLength={6}
                 required
-                className="h-12 rounded-xl border-2 focus:border-teal-500 font-mono text-lg tracking-wider text-center uppercase"
+                className="h-12 rounded-xl border-2 border-white/10 bg-white/5 text-white placeholder:text-gray-500 focus:border-cyan-500 focus:bg-white/10 font-mono text-lg tracking-wider text-center uppercase"
               />
             </div>
 
@@ -113,7 +112,7 @@ const JoinEvent = () => {
               data-testid="join-event-submit-btn"
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white h-12 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white h-12 rounded-full font-semibold shadow-lg hover:shadow-cyan-500/50 transition-all"
             >
               {loading ? 'Joining...' : 'Join Event'}
             </Button>
