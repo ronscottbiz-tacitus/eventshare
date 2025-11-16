@@ -101,7 +101,7 @@ const EventGallery = () => {
                     <Button
                       data-testid="show-qr-btn"
                       variant="outline"
-                      className="rounded-full"
+                      className="rounded-full border-white/20 text-gray-300 hover:bg-white/10"
                     >
                       <QrCode className="w-4 h-4 mr-2" />
                       Share
