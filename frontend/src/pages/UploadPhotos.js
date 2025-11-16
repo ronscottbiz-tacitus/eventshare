@@ -124,34 +124,69 @@ const UploadPhotos = () => {
           Back to Gallery
         </Button>
 
-        <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-8">
+          <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             Add Photos
           </h1>
-          <p className="text-gray-600 mb-8">Select up to 20 photos to upload</p>
+          <p className="text-gray-400 mb-8">Select up to 20 photos to upload</p>
 
           {files.length === 0 ? (
-            <div
-              {...getRootProps()}
-              className={`border-4 border-dashed rounded-3xl p-16 text-center cursor-pointer transition-all ${
-                isDragActive
-                  ? 'border-emerald-500 bg-emerald-50'
-                  : 'border-gray-300 hover:border-emerald-400 hover:bg-emerald-50/30'
-              }`}
-              data-testid="dropzone"
-            >
-              <input {...getInputProps()} />
-              <Camera className="w-20 h-20 text-gray-400 mx-auto mb-4" />
-              <p className="text-xl font-semibold text-gray-700 mb-2">
-                {isDragActive ? 'Drop photos here' : 'Drag & drop photos here'}
-              </p>
-              <p className="text-gray-500 mb-6">or click to browse</p>
-              <Button
-                type="button"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-8 py-3"
+            <div className="space-y-4">
+              {/* Camera Capture Button */}
+              <div className="text-center">
+                <input
+                  ref={cameraInputRef}
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  multiple
+                  onChange={handleCameraCapture}
+                  className="hidden"
+                />
+                <Button
+                  data-testid="take-photo-btn"
+                  type="button"
+                  onClick={() => cameraInputRef.current?.click()}
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-2xl px-8 py-8 text-lg font-semibold shadow-lg hover:shadow-blue-500/50 transition-all"
+                >
+                  <Camera className="w-8 h-8 mr-3" />
+                  Take Photo with Camera
+                </Button>
+                <p className="text-gray-500 text-sm mt-2">Opens your device camera</p>
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-white/10"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-slate-900 text-gray-400">or</span>
+                </div>
+              </div>
+
+              {/* Gallery Selection */}
+              <div
+                {...getRootProps()}
+                className={`border-4 border-dashed rounded-3xl p-12 text-center cursor-pointer transition-all ${
+                  isDragActive
+                    ? 'border-blue-500 bg-blue-500/10'
+                    : 'border-white/20 hover:border-blue-400 hover:bg-blue-500/5'
+                }`}
+                data-testid="dropzone"
               >
-                Choose Photos
-              </Button>
+                <input {...getInputProps()} />
+                <Upload className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                <p className="text-xl font-semibold text-white mb-2">
+                  {isDragActive ? 'Drop photos here' : 'Choose from Gallery'}
+                </p>
+                <p className="text-gray-400 mb-6">Drag & drop or click to browse</p>
+                <Button
+                  type="button"
+                  className="bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-8 py-3"
+                >
+                  Browse Files
+                </Button>
+              </div>
             </div>
           ) : (
             <div className="space-y-6">
