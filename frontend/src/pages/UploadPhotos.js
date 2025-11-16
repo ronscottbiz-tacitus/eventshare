@@ -241,8 +241,8 @@ const UploadPhotos = () => {
                       onClick={() => setCurrentIndex(idx)}
                       className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-3 transition-all ${
                         idx === currentIndex
-                          ? 'border-emerald-500 ring-2 ring-emerald-500'
-                          : 'border-transparent hover:border-emerald-300'
+                          ? 'border-blue-500 ring-2 ring-blue-500'
+                          : 'border-transparent hover:border-blue-300'
                       }`}
                     >
                       <img
@@ -262,7 +262,7 @@ const UploadPhotos = () => {
                     data-testid="add-more-btn"
                     type="button"
                     variant="outline"
-                    className="w-full h-12 rounded-full font-semibold"
+                    className="w-full h-12 rounded-full font-semibold border-white/20 text-gray-300 hover:bg-white/10"
                   >
                     <Camera className="w-5 h-5 mr-2" />
                     Add More Photos
@@ -273,7 +273,7 @@ const UploadPhotos = () => {
                   data-testid="upload-btn"
                   onClick={handleUpload}
                   disabled={uploading}
-                  className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white h-12 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+                  className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white h-12 rounded-full font-semibold shadow-lg hover:shadow-blue-500/50 transition-all"
                 >
                   {uploading ? (
                     'Uploading...'
