@@ -166,14 +166,14 @@ const EventGallery = () => {
         </div>
 
         {media.length === 0 ? (
-          <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-16 text-center" data-testid="empty-gallery">
-            <Camera className="w-20 h-20 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">No photos yet</h3>
-            <p className="text-gray-500 mb-6">Be the first to share a photo!</p>
+          <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-xl border border-white/10 p-16 text-center" data-testid="empty-gallery">
+            <Camera className="w-20 h-20 text-gray-500 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-white mb-2">No photos yet</h3>
+            <p className="text-gray-400 mb-6">Be the first to share a photo!</p>
             <Button
               data-testid="add-photos-btn-empty"
               onClick={() => navigate(`/events/${eventId}/upload`)}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-8 py-3"
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3 shadow-lg hover:shadow-blue-500/50"
             >
               <Plus className="w-5 h-5 mr-2" />
               Add Photos
