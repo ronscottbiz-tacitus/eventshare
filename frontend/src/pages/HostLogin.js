@@ -116,7 +116,28 @@ const HostLogin = () => {
           Continue with Google
         </Button>
 
-        <div className="text-center">
+        <div className="border-t pt-6 mt-6">
+          <p className="text-center text-sm text-gray-600 mb-3">For testing purposes:</p>
+          <Button
+            data-testid="test-login-btn"
+            onClick={async () => {
+              try {
+                await axios.post(`${API}/auth/test-host-login`, {}, { withCredentials: true });
+                await checkAuth();
+                toast.success('Test login successful!');
+                navigate('/host/events');
+              } catch (error) {
+                toast.error('Test login failed');
+              }
+            }}
+            variant="outline"
+            className="w-full"
+          >
+            Quick Test Login (Skip Google)
+          </Button>
+        </div>
+
+        <div className="text-center mt-4">
           <button
             data-testid="back-to-welcome-btn"
             onClick={() => navigate('/')}
