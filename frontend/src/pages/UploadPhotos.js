@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, Upload, X, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,7 @@ const UploadPhotos = () => {
   const [captions, setCaptions] = useState({});
   const [uploading, setUploading] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const cameraInputRef = useRef(null);
 
   const onDrop = useCallback((acceptedFiles) => {
     const imageFiles = acceptedFiles.filter((file) =>
