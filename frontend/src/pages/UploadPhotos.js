@@ -190,9 +190,9 @@ const UploadPhotos = () => {
             </div>
           ) : (
             <div className="space-y-6">
-              <div className="bg-gray-100 rounded-2xl p-6">
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10">
                 <div className="flex items-center justify-between mb-4">
-                  <p className="text-lg font-semibold text-gray-700">
+                  <p className="text-lg font-semibold text-white">
                     Photo {currentIndex + 1} of {files.length}
                   </p>
                   <Button
@@ -200,14 +200,14 @@ const UploadPhotos = () => {
                     onClick={() => removeFile(currentFile.id)}
                     variant="ghost"
                     size="sm"
-                    className="text-red-600 hover:text-red-700"
+                    className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
                   >
                     <X className="w-5 h-5 mr-1" />
                     Remove
                   </Button>
                 </div>
 
-                <div className="bg-white rounded-xl overflow-hidden mb-4">
+                <div className="bg-black/50 rounded-xl overflow-hidden mb-4 border border-white/10">
                   <img
                     src={currentFile.preview}
                     alt="Preview"
@@ -217,7 +217,7 @@ const UploadPhotos = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-gray-700">
+                  <label className="text-sm font-semibold text-gray-300">
                     Add a caption (optional)
                   </label>
                   <Textarea
@@ -228,7 +228,7 @@ const UploadPhotos = () => {
                     }
                     placeholder="Add an optional caption..."
                     rows={3}
-                    className="rounded-xl"
+                    className="rounded-xl bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500 focus:bg-white/10"
                   />
                 </div>
               </div>
