@@ -154,11 +154,11 @@ const EventGallery = () => {
           </div>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-8 mb-6">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+        <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 p-8 mb-6">
+          <h1 className="text-4xl font-bold text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
             {event.title}
           </h1>
-          <div className="flex flex-wrap gap-4 text-gray-600">
+          <div className="flex flex-wrap gap-4 text-gray-400">
             <span>{format(new Date(event.start_time), 'PPP')}</span>
             {event.location && <span>• {event.location}</span>}
             <span>• {media.length} photos</span>
