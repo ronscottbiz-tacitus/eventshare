@@ -268,6 +268,60 @@ async def logout(response: Response, session_token: Optional[str] = Cookie(None)
     response.delete_cookie(key="session_token", path="/")
     return {"success": True}
 
+# Test login endpoint for development
+@api_router.post("/auth/test-host-login")
+async def test_host_login(response: Response):
+    # Find or create test host
+    user = await db.users.find_one({"email": "testhost@example.com"}, {"_id": 0})
+    
+    if not user:
+        user_data = {
+            "id": f"test-host-{int(datetime.now(timezone.utc).timestamp())}",
+            "email": "testhost@example.com",
+            "name": "Test Host",
+            "picture": "https://via.placeholder.com/150",
+            "auth_provider": "test",
+            "role": "host",
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        await db.users.insert_one(user_data)
+        user = user_data
+    
+    # Create new session
+    session_token = str(uuid.uuid4())
+    expires_at = datetime.now(timezone.utc) + timedelta(days=7)
+    
+    # Delete old sessions for this user
+    await db.user_sessions.delete_many({"user_id": user["id"]})
+    
+    await db.user_sessions.insert_one({
+        "user_id": user["id"],
+        "session_token": session_token,
+        "expires_at": expires_at.isoformat(),
+        "created_at": datetime.now(timezone.utc).isoformat()
+    })
+    
+    response.set_cookie(
+        key="session_token",
+        value=session_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        max_age=7 * 24 * 60 * 60,
+        path="/"
+    )
+    
+    return {
+        "success": True,
+        "session_token": session_token,
+        "user": {
+            "id": user["id"],
+            "name": user["name"],
+            "email": user["email"],
+            "role": user["role"]
+        }
+    }
+
 # Event endpoints
 @api_router.post("/events", response_model=Event)
 async def create_event(event_data: EventCreate, current_user: User = Depends(get_current_user)):
