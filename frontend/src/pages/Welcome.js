@@ -49,15 +49,15 @@ const Welcome = () => {
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-12">
         <div className="max-w-5xl w-full space-y-12">
           <div className="text-center space-y-8" data-testid="welcome-container">
-            <div className="inline-block p-4 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-emerald-500/30">
-              <Camera className="w-16 h-16 text-emerald-400" />
+            <div className="inline-block p-4 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-blue-500/30">
+              <Camera className="w-16 h-16 text-blue-400" />
             </div>
             
             <div className="space-y-4">
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent animate-gradient" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-sky-400 bg-clip-text text-transparent animate-gradient" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                 EventShare
               </h1>
-              <div className="flex items-center justify-center gap-2 text-emerald-400/80">
+              <div className="flex items-center justify-center gap-2 text-blue-400/80">
                 <Sparkles className="w-5 h-5 animate-pulse" />
                 <span className="text-sm font-medium tracking-wider uppercase">Share Every Moment</span>
                 <Sparkles className="w-5 h-5 animate-pulse" />
