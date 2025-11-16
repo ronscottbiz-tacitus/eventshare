@@ -145,7 +145,7 @@ const EventGallery = () => {
                   data-testid="settings-btn"
                   onClick={() => navigate(`/events/${eventId}/settings`)}
                   variant="outline"
-                  className="rounded-full"
+                  className="rounded-full border-white/20 text-gray-300 hover:bg-white/10"
                 >
                   <SettingsIcon className="w-4 h-4" />
                 </Button>
