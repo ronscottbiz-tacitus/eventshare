@@ -45,6 +45,26 @@ const UploadPhotos = () => {
     maxFiles: 20,
   });
 
+  const handleCameraCapture = (event) => {
+    const capturedFiles = Array.from(event.target.files);
+    const imageFiles = capturedFiles.filter((file) =>
+      file.type.startsWith('image/')
+    );
+
+    if (imageFiles.length + files.length > 20) {
+      toast.error('You can upload up to 20 photos at once');
+      return;
+    }
+
+    const newFiles = imageFiles.map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+      id: Math.random().toString(36),
+    }));
+
+    setFiles([...files, ...newFiles]);
+  };
+
   const removeFile = (id) => {
     setFiles(files.filter((f) => f.id !== id));
     const newCaptions = { ...captions };
