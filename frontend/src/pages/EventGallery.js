@@ -203,12 +203,12 @@ const EventGallery = () => {
               ))}
             </div>
 
-            <div className="fixed bottom-6 right-6">
+            <div className="fixed bottom-6 left-6">
               <Button
                 data-testid="add-photos-btn"
                 onClick={() => navigate(`/events/${eventId}/upload`)}
                 size="lg"
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-full px-8 py-6 shadow-2xl hover:shadow-3xl transition-all"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white rounded-full px-8 py-6 shadow-2xl hover:shadow-blue-500/50 transition-all"
               >
                 <Plus className="w-6 h-6 mr-2" />
                 Add Photos
